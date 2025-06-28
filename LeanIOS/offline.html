@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>No Internet Connection</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #1c1c1e;
+      --accent-color: #ff5252;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #eeeeee;
+      --accent-color: #ff6b6b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    svg {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 20px;
+      animation: float 2s infinite ease-in-out;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 25px;
+      font-size: 16px;
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: darkred;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="var(--accent-color)" d="M32 44a4 4 0 100 8 4 4 0 000-8zm-8.5-3.5a12 12 0 0117 0l2.8-2.8a16 16 0 00-22.6 0l2.8 2.8zm-5.66-5.66a20 20 0 0128.28 0l2.83-2.83a24 24 0 00-33.94 0l2.83 2.83zm-5.66-5.66a28 28 0 0139.6 0l2.83-2.83a32 32 0 00-45.26 0l2.83 2.83z"/>
+      <line x1="0" y1="0" x2="64" y2="64" stroke="var(--text-color)" stroke-width="4"/>
+    </svg>
+    <h1>Connection Lost</h1>
+    <p>Please check your internet connection and try again.</p>
+    <button onclick="location.reload()">Retry</button>
+  </div>
+
+  <script>
+    function updateTheme() {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+    }
+
+    updateTheme();
+
+    if (window.matchMedia) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateTheme);
+    }
+  </script>
+</body>
+</html>
