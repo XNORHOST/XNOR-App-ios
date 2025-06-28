@@ -12,3 +12,9 @@
   "author": "GoNative.io LLC",
   "license": "https://gonative.io/pricing"
 }
+{
+  "extends": ["config:base"],
+  "dependencyDashboard": true,
+  "labels": ["dependencies"],
+  "assignees": ["your-username"]
+} 
